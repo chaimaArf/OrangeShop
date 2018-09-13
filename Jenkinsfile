@@ -1,9 +1,16 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'maven:3.3.9-jdk7'
+    }
+
+  }
   stages {
-    stage('Initialize') {
+    stage(' Initialize') {
       steps {
-        echo 'the is a minimal pipeline'
+        sh '''echo PATH=${PATH}
+echo M_HOME=${M2_HOME}
+mvn clean'''
       }
     }
   }
